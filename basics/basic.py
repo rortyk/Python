@@ -1,11 +1,14 @@
-def circle_area_func(pi):
-    def circle_area(radius):
-        return pi * radius * radius
+l = ['Good morning', 'Good afternoon', 'Good night']
 
-    return circle_area
+for i in l:
+    print(i)
 
-ca1 = circle_area_func(3.14)
-ca2 = circle_area_func(3.141592)
+print("#####################")
 
-print(ca1(10))
-print(ca2(10))
+def greeting():
+    yield 'Good morning'
+    yield 'Good afternoon'
+    yield 'Good night'
+
+for g in greeting():
+    print(g)
