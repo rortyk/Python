@@ -1,14 +1,30 @@
-l = ['Good morning', 'Good afternoon', 'Good night']
+ranging = {
+    'A': 100, 
+    'B': 85,
+    'C': 95
+}
 
-for i in l:
-    print(i)
+print(sorted(ranging, key=ranging.get, reverse=True))
 
-print("#####################")
+s = "fklkjlgja;lgiaujogal"
 
-def greeting():
-    yield 'Good morning'
-    yield 'Good afternoon'
-    yield 'Good night'
+d = {}
+for c in s:
+    if c not in d:
+        d[c] = 0
+    d[c] += 1
+print(d)
 
-for g in greeting():
-    print(g)
+d = {}
+for c in s:
+    d.setdefault(c, 0)
+    d[c] += 1
+print(d)
+
+from collections import defaultdict
+
+d = defaultdict(int)
+
+for c in s:
+    d[c] += 1
+print(d)
