@@ -1,30 +1,21 @@
-ranging = {
-    'A': 100, 
-    'B': 85,
-    'C': 95
-}
+class Person(object):
+    def __init__(self, name):
+        self.name = name
 
-print(sorted(ranging, key=ranging.get, reverse=True))
+    def say_something(self):
+        print('I am {}. hello'.format(self.name))
+        self.run(10)
 
-s = "fklkjlgja;lgiaujogal"
+    def run(self, num):
+        print('run' * num)
 
-d = {}
-for c in s:
-    if c not in d:
-        d[c] = 0
-    d[c] += 1
-print(d)
+    def __del__(self):
+        print('good bye')
 
-d = {}
-for c in s:
-    d.setdefault(c, 0)
-    d[c] += 1
-print(d)
 
-from collections import defaultdict
+person = Person('Mike')
+person.say_something()
 
-d = defaultdict(int)
+del person
 
-for c in s:
-    d[c] += 1
-print(d)
+print('##############')
