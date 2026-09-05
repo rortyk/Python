@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"name": "Python (root)",
+			"path": ".",
+			"settings": {
+				// basics は独立ルートとして表示済みなので、こちらでは隠す
+				"files.exclude": {
+					"basics": true
+				}
+			}
+		},
+		{
+			"name": "basics",
+			"path": "basics",
+			"settings": {
+				// 手動選択に頼らず、このフォルダの venv を明示
+				"python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python"
+			}
+		}
+	],
+	"settings": {
+		// 全フォルダ共通: VSCode内でターミナルを開くと自動で venv を activate する
+		"python.terminal.activateEnvironment": true
+	}
+}
