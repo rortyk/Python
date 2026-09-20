@@ -1,26 +1,36 @@
-class Temperature(object):
+class Playlist:
 
-    def __init__(self, value):
-        self.value = float(value)
+    def __init__(self, songs):
+        self.songs = songs
 
-    def __eq__(self, tmp_value):
-        return self.value == tmp_value.value
+    def __len__(self):
+        return len(self.songs)
 
-    def __str__(self):
-        return str(self.value) + '°C'
+    def __getitem__(self, index):
+        return self.songs[index]
 
-    def __lt__(self, tmp_value):
-        return self.value < tmp_value.value
+    def __contains__(self, song):
+        return song.lower() in (s.lower() for s in self.songs)
 
-    def __repr__(self):
-        return f'{self.__class__.__name__}({self.value})'
+p = Playlist(['Norwegian Wood', 'Blackbird', 'Yesterday'])
 
-t1 = Temperature(25)
-t2 = Temperature(25.0)
-t3 = Temperature(-3.5)
+print(len(p))        # 3
+print(p[0])          # Norwegian Wood
+print(p[2])          # Yesterday
+print(p[-1])         # Yesterday
 
-print(t1)
-print(t1 == t2)
-print(t3 < t1)
-print([str(t) for t in sorted([t1, t3, Temperature(100)])])
-print(sorted([t1, t3, Temperature(100)]))
+print('Blackbird' in p)
+
+for song in p:
+    print(song)
+
+print('Blackbird' in p)      # True
+print('Hey Jude' in p)       # False
+
+print('blackbird' in p)      # ← 今は False。これを True にしたい
+print('BLACKBIRD' in p)      # ← 同上
+
+print('Norwegian Wood' in p)   # True
+print('norwegian wood' in p)   # True
+print('NORWEGIAN WOOD' in p)   # True
+print('Hey Jude' in p)         # False
