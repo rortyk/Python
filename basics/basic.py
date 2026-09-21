@@ -1,36 +1,33 @@
-class Playlist:
+class Money:
 
-    def __init__(self, songs):
-        self.songs = songs
+    def __init__(self, value):
+        self.value = value
 
-    def __len__(self):
-        return len(self.songs)
+    def __repr__(self):
+        return f'{self.__class__.__name__}({self.value})'
 
-    def __getitem__(self, index):
-        return self.songs[index]
+    def __str__(self):
+        return f'¥{self.value}'
 
-    def __contains__(self, song):
-        return song.lower() in (s.lower() for s in self.songs)
+    def __eq__(self, other):
+        if not isinstance(other, Money):
+            return NotImplemented
+        return self.value == other.value
 
-p = Playlist(['Norwegian Wood', 'Blackbird', 'Yesterday'])
+    def __add__(self, other):
+        return Money(self.value + other.value)
 
-print(len(p))        # 3
-print(p[0])          # Norwegian Wood
-print(p[2])          # Yesterday
-print(p[-1])         # Yesterday
+m1 = Money(100)
+m2 = Money(250)
 
-print('Blackbird' in p)
+print(m1)                    # ¥100
+print([m1, m2])              # [Money(100), Money(250)]
+print(m1 == Money(100))      # True
+print(m1 == m2)              # False
+print(m1 + m2)               # ¥350
+print(type(m1 + m2))         # <class '__main__.Money'>
 
-for song in p:
-    print(song)
-
-print('Blackbird' in p)      # True
-print('Hey Jude' in p)       # False
-
-print('blackbird' in p)      # ← 今は False。これを True にしたい
-print('BLACKBIRD' in p)      # ← 同上
-
-print('Norwegian Wood' in p)   # True
-print('norwegian wood' in p)   # True
-print('NORWEGIAN WOOD' in p)   # True
-print('Hey Jude' in p)         # False
+print(Money(100) == 100)                   # False
+print(Money(100) == '100')                 # False
+print(Money(100) != 100)                   # True
+print(Money(100) in [1, 2, Money(100)])    # True
