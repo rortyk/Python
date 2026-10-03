@@ -17,6 +17,15 @@ class Money:
     def __add__(self, other):
         return Money(self.value + other.value)
 
+    def __hash__(self):
+        return hash(self.value)
+
+    def __radd__(self, other):
+        if other != 0:
+            return NotImplemented
+        return self
+
+
 m1 = Money(100)
 m2 = Money(250)
 
@@ -31,3 +40,8 @@ print(Money(100) == 100)                   # False
 print(Money(100) == '100')                 # False
 print(Money(100) != 100)                   # True
 print(Money(100) in [1, 2, Money(100)])    # True
+
+wallet = {Money(100), Money(100), Money(250)}
+print(len(wallet))
+print("-----")
+print(sum([m1, m2]))         # ¥350 にしたい
