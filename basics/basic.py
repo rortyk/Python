@@ -1,47 +1,16 @@
-class Money:
-
-    def __init__(self, value):
-        self.value = value
-
-    def __repr__(self):
-        return f'{self.__class__.__name__}({self.value})'
-
-    def __str__(self):
-        return f'¥{self.value}'
-
-    def __eq__(self, other):
-        if not isinstance(other, Money):
-            return NotImplemented
-        return self.value == other.value
-
-    def __add__(self, other):
-        return Money(self.value + other.value)
-
-    def __hash__(self):
-        return hash(self.value)
-
-    def __radd__(self, other):
-        if other != 0:
-            return NotImplemented
-        return self
-
-
-m1 = Money(100)
-m2 = Money(250)
-
-print(m1)                    # ¥100
-print([m1, m2])              # [Money(100), Money(250)]
-print(m1 == Money(100))      # True
-print(m1 == m2)              # False
-print(m1 + m2)               # ¥350
-print(type(m1 + m2))         # <class '__main__.Money'>
-
-print(Money(100) == 100)                   # False
-print(Money(100) == '100')                 # False
-print(Money(100) != 100)                   # True
-print(Money(100) in [1, 2, Money(100)])    # True
-
-wallet = {Money(100), Money(100), Money(250)}
-print(len(wallet))
-print("-----")
-print(sum([m1, m2]))         # ¥350 にしたい
+s = """\
+AAA
+BBB
+CCC
+DDD
+"""
+# with open('test.txt', 'w') as f:
+#     f.write(s)
+with open('test.txt', 'r') as f:
+    # print(f.read())
+     while True:
+          chunk = 2
+          line = f.read(chunk)
+          print(line)
+          if not line:
+               break
